@@ -1,0 +1,35 @@
+{% extends 'notesApp/notesAppBase.html' %}
+{% block head %}
+<style>
+    #base {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 88vh;
+    }
+
+    form {
+        width: 50vw;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container" id='base'>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form.visible_fields %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field.errors }}
+            {{ field }}
+            {{ field.help_text }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+</div>
+
+{% endblock %}

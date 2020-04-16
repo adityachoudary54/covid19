@@ -1,0 +1,76 @@
+{% extends 'notesApp/notesAppBase.html' %}
+{% block head %}
+{% csrf_token %}
+<!-- <link rel="stylesheet" href="static/app.css"> -->
+<style>
+    #tableDiv {
+        height: 50vh;
+        overflow-y: scroll;
+    }
+
+    /* thead {
+        width: 100%;
+    } */
+
+    th {
+        top:0;
+        position:sticky;
+    }
+    h1{
+        margin:2rem 0;
+    }
+</style>
+<title>Notes app</title>
+{% endblock %}
+{% block body %}
+<!-- <h1>Notes List</h1>
+<div class="container" id='tableDiv'>
+    <table class='table'>
+        <thead class="thead-dark">
+            <div class='imp'>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Created</th>
+                    <th>Modified</th>
+                </tr>
+            </div>
+        </thead>
+        <tbody>
+            {% for obj in objList %}
+            <tr>
+                <td>{{ obj.title }}</td>
+                <td>{{ obj.content }}</td>
+                <td>{{ obj.createdDate }}</td>
+                <td>{{ obj.modifiedDate }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> -->
+<div class="container">
+    <h1>Adding notes</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form.visible_fields %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field.errors }}
+            {{ field }}
+            {{ field.help_text }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+<script>
+    let a = new Date()
+    createdDate = document.getElementById('id_createdDate')
+    createdDate.value = a.getMonth() + "/" + a.getDate() + "/" + a.getFullYear() + " " + a.getHours() + ":" + a.getMinutes()
+    modifiedDate = document.getElementById('id_modifiedDate')
+    modifiedDate.value = a.getMonth() + "/" + a.getDate() + "/" + a.getFullYear() + " " + a.getHours() + ":" + a.getMinutes()
+    createdDate.parentElement.style.display = "none"
+    modifiedDate.parentElement.style.display = "none"
+</script>
+{% endblock %}

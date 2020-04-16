@@ -1,0 +1,65 @@
+{% extends 'notesApp/notesAppBase.html' %}
+{% block head %}
+<!-- <link rel="stylesheet" href="static/app.css"> -->
+<style>
+    #tableDiv {
+        height: 50vh;
+        overflow-y: scroll;
+    }
+
+    /* thead {
+        width: 100%;
+    } */
+
+    th {
+        top:0;
+        position:sticky;
+    }
+    h1{
+        margin:2rem 0;
+    }
+</style>
+<title>Notes app</title>
+{% endblock %}
+{% block body %}
+<h1>Notes List</h1>
+<div class="container" id='tableDiv'>
+    <table class='table'>
+        <thead class="thead-dark">
+            <div class='imp'>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Created</th>
+                    <th>Modified</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </div>
+        </thead>
+        <tbody>
+            {% for obj in objList %}
+            <tr>
+                <td>{{ obj.title }}</td>
+                <td>{{ obj.content }}</td>
+                <td>{{ obj.createdDate }}</td>
+                <td>{{ obj.modifiedDate }}</td>
+                <td>
+                    <button  onclick="location.href='modify/{{ obj.id }}'" class="btn btn-primary">Edit</button>
+                </td>
+                <td>
+                    <button  onclick="location.href='delete/{{ obj.id }}'" class="btn btn-primary">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<form method='POST'>
+    {% csrf_token %}
+    <button class='btn btn-primary' type='submit'> 
+        Add notes
+    </button>
+</form>
+
+{% endblock %}
