@@ -1,0 +1,374 @@
+{%  extends 'base.html' %}
+{% block head %}
+{% load static %}
+<style>
+    .navbarDropdown {
+        margin-left: 3rem;
+    }
+
+    .navbar {
+        font-size: 1.2rem;
+        padding: 0.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        margin: 0;
+    }
+
+    .dropdown-menu {
+        margin-left: 3rem;
+    }
+
+    .container {
+        display: grid;
+        max-width: 100%;
+        grid-gap: 2rem;
+        margin: 2rem auto;
+        grid-template-areas: "rssFeed dosDonts dosDonts dosDonts dosDonts"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed worldData worldData coronaDetails coronaDetails"
+            "rssFeed footer footer footer footer";
+
+    }
+
+    #item1 {
+        grid-area: rssFeed;
+        height: 140vh;
+        overflow-y: scroll;
+        /* width:200px; */
+    }
+
+    #item2 {
+        grid-area: dosDonts;
+        background-color: rgb(214, 255, 245);
+        display: flex;
+        flex-direction: column;
+        /* justify-content: space-between; */
+        align-items: center;
+        font-weight: 600;
+        /* flex-wrap: wrap; */
+    }
+
+    #item3 {
+        grid-area: worldData;
+        height: 115vh;
+        overflow-y: scroll;
+        /* background-color: red; */
+    }
+
+    #item4 {
+        grid-area: coronaDetails;
+        /* background-color: orange; */
+        position: relative;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-width: 10rem;
+        max-width: 32rem;
+    }
+
+    #item5 {
+        grid-area: footer;
+        background-color: purple;
+    }
+
+    th {
+        top: 0;
+        position: sticky;
+    }
+
+    /* .item1Small {
+        font-size: 1rem;
+    } */
+
+    /* #item1ul{
+        width:200px;
+    } */
+
+    #symptoms {
+        background-color: rgb(44, 43, 43);
+        color:white;
+        text-align:center;
+        box-sizing: border-box;
+        width:32rem;
+        height:60vh;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding:1rem;
+        overflow-y:scroll;
+    }
+
+    #prevention {
+        background-color: rgb(7, 170, 199);
+    }
+
+    #treatment {
+        background-color: rgb(80, 156, 84);
+    }
+
+    .dos {
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        /* max-width: 40rem; */
+        width: 100%;
+        height: 18vh;
+        /* cursor: pointer; */
+    }
+
+    #dos2 {
+        display: none;
+    }
+
+    #dos3 {
+        display: none;
+    }
+
+    #dos4 {
+        display: none;
+    }
+
+    #dos5 {
+        display: none;
+    }
+
+    #dos6 {
+        display: none;
+    }
+
+    .content {
+        width: 40rem;
+    }
+
+    .logo img {
+        height: 14vh;
+        width: 6rem;
+    }
+
+    .item4ele {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .carousel-item img{
+        width: 32rem;
+        height: 60vh;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class='container'>
+    <div class='list-group' id="item1">
+        {% for title,link,published in newsList %}
+        <div class="card ">
+            <div class="card-body">
+                <h5 class="card-title">{{ title }}</h5>
+                <p class="card-text">
+                    Published Date:{{ published }}
+                    <br>
+                    To know more click on:
+                    <br><a href="{{ link }}">{{ title }}</a>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="item2">
+        <div class='dos' id="dos1">
+            <div class="logo" id="item2logo1">
+                <img src="{% static 'covid19data/images/dosDonts/1.jpg' %}" alt="item2logo1">
+            </div>
+            <div class="content" id="item2content1">
+                Practice frequent hand
+                washing. Wash hands with
+                soap and water or use alcohol
+                based hand rub. Wash hands
+                even if they are visibly clean
+            </div>
+        </div>
+        <div class='dos' id="dos2">
+            <div class="logo" id="item2logo2">
+                <img src="{% static 'covid19data/images/dosDonts/2.jpg' %}" alt="item2logo2">
+            </div>
+            <div class="content" id="item2content2">Cover your nose and
+                mouth with
+                handkerchief/tissue while
+                sneezing and coughin
+            </div>
+        </div>
+        <div class='dos' id="dos3">
+            <div class="logo" id="item2logo3">
+                <img src="{% static 'covid19data/images/dosDonts/3.jpg' %}" alt="item2logo3">
+            </div>
+            <div class="content" id="item2content3">
+                Throw used
+                tissues into closed
+                bins immediately
+                after use
+            </div>
+        </div>
+        <div class='dos' id="dos4">
+            <div class="logo" id="item2logo4">
+                <img src="{% static 'covid19data/images/dosDonts/4.jpg' %}" alt="item2logo4">
+            </div>
+            <div class="content" id="item2content4">See a doctor if you feel unwell
+                (fever, difficult breathing and
+                cough). While visiting doctor
+                wear a mask/cloth to cover
+                your mouth and nose
+            </div>
+        </div>
+        <div class='dos' id="dos5">
+            <div class="logo" id="item2logo5">
+                <img src="{% static 'covid19data/images/dosDonts/5.jpg' %}" alt="item2logo5">
+            </div>
+            <div class="content" id="item2content5">If you have these
+                signs/symptoms please
+                call State helpline number
+                or Ministry of Health &
+                Family Welfare’s 24X7
+                helpline at 011-23978046
+            </div>
+        </div>
+        <div class='dos' id="dos6">
+            <div class="logo" id="item2logo6">
+                <img src="{% static 'covid19data/images/dosDonts/6.jpg' %}" alt="item2logo6">
+            </div>
+            <div class="content" id="item2content6">Avoid participating
+                in large gatherings
+            </div>
+        </div>
+
+    </div>
+    <div id="item3">
+        {{ worldData | safe }}
+    </div>
+    <div id="item4">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" style="width:32rem;height:60vh" >
+                <div class="carousel-item active">
+                    <img src="{% static 'covid19data/images/mythbusters/mythBusterMain.jpg' %}" class="d-block" alt="mythbuster main page">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{% static 'covid19data/images/mythbusters/1.png' %}" class="d-block" alt="mythbuster1">
+                </div>
+                <div class="carousel-item ">
+                    <img src="{% static 'covid19data/images/mythbusters/2.jpg' %}" alt="mythbuster2" class="d-block">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'covid19data/images/mythbusters/3.jpg' %}" alt="mythbuster3" class="d-block">
+                </div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/4.jpg' %}"
+                        alt="mythbuster4" class="d-block">
+                </div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/5.jpg' %}"
+                        alt="mythbuster5" class="d-block">
+                </div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/6.png' %}" alt="mythbuster6" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/7.png' %}" alt="mythbuster7" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/8.png' %}" alt="mythbuster8" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/9.png' %}" alt="mythbuster9" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/10.png' %}" alt="mythbuster10" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/11.png' %}" alt="mythbuster11" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/12.png' %}" alt="mythbuster12" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/13.png' %}" alt="mythbuster13" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/14.png' %}" alt="mythbuster14" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/15.png' %}" alt="mythbuster15" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/16.png' %}" alt="mythbuster16" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/17.png' %}" alt="mythbuster17" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/18.png' %}" alt="mythbuster18" class="d-block"></div>
+                <div class="carousel-item"><img src="{% static 'covid19data/images/mythbusters/19.png' %}" alt="mythbuster19" class="d-block"></div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class='item4ele' id="symptoms">
+            <h2>Symptoms</h2>
+            <p>The COVID-19 virus affects different people in different ways. Most infected people will develop mild to moderate symptoms.</p>
+
+            <p>On average it takes 5–6 days from when someone is infected with the virus for symptoms to show, however it can take up to 14 days.</p>
+            <p>People with mild symptoms who are otherwise healthy should self-isolate. Seek medical attention if you have a fever, acough, and difficulty breathing. Call ahead.</p>
+            <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=2ahUKEwiK-tX29e3oAhUxH7cAHXccAl4QhtgEMAF6BAgIEA8&url=https%3A%2F%2Fwww.who.int%2Fnews-room%2Fq-a-detail%2Fq-a-coronaviruses%23%3A~%3Atext%3Dsymptoms&usg=AOvVaw1r-bSGGUz6mQTigXkd4766">Click To Know More</a>
+            
+        </div>
+    </div>
+    <div id="item5">5</div>
+</div>
+
+{% endblock %}
+{% block script %}
+<script>
+    // item3
+    let item3 = document.getElementById('item3');
+    item3table = item3.querySelector('table');
+    item3table.className = 'table table-hover';
+    item3table.removeAttribute('border');
+    document.querySelector('tr').removeAttribute('style');
+    document.querySelector('thead').className = 'thead-dark';
+
+    // item2
+    let dosChildren = document.querySelector('#item2').children;
+    dosChildren = Array.from(dosChildren)
+    dosChildren.forEach(function (element, index) {
+        element.addEventListener('mouseleave', function (e) {
+            element.style.display = 'none';
+            dosChildren[(index + 1) % 6].style.display = 'flex';
+            //     setTimeout(() => {
+            //         element.style.display='none';
+            //     }, 5000);
+        });
+    });
+
+    // // item4
+    // let item4children = document.querySelector('#item4').children;
+    // item4children = Array.from(item4children)
+    // item4children.forEach(function (element, index) {
+
+    //     element.addEventListener('mouseleave', function (e) {
+
+    //         item4children.forEach(element => {
+    //             element.style.display = 'flex';
+    //         });
+
+    //     });
+
+    //     element.addEventListener('click', function (e) {
+
+    //         item4children.forEach(function (element, inner_index) {
+    //             if (inner_index !== index)
+    //                 element.style.display = 'none';
+    //         });
+
+    //     });
+    // });
+
+
+</script>
+{% endblock %}
